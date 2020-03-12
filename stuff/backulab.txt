@@ -1,0 +1,379 @@
+let x;
+let equation = [];
+let equationToPrint; 
+let auxValue = 0;
+let auxValue2 = 0; 
+let auxEqu; 
+let auxOperation = 0; 
+let indexAux = 0; 
+let indexAux2 = 0; 
+let newValue; 
+let newString; 
+
+document.getElementById("addButton").addEventListener("click",function(){guardaValor(1);}); 
+document.getElementById("substractButton").addEventListener("click", function(){guardaValor(2);});
+document.getElementById("multiplicationButton").addEventListener("click", function(){guardaValor(3);}); 
+document.getElementById("divisionButton").addEventListener("click", function(){guardaValor(4);});
+
+function guardaValor(y){
+x = document.getElementById("inputN").value;
+console.log(x);
+document.getElementById("inputN").value = "";
+equation += x; 
+switch (y)
+{
+  case 1:
+      equation += "+"; 
+      break; 
+  case 2: 
+      equation += "-"; 
+      break; 
+  case 3:
+      equation += "*"; 
+      break; 
+  case 4:
+      equation += "/"; 
+      break;
+}
+console.log(equation); 
+}
+
+document.getElementById("equalSign").addEventListener("click", equalFunction); 
+
+function equalFunction() {
+x = document.getElementById("inputN").value;
+console.log(x);
+document.getElementById("inputN").value = "";
+equation += x; 
+equation += "=";
+console.log("Aqui agrego valor despues de igual")
+equationToPrint = equation; 
+// Hacer operación 
+/*
+for(let z = 0; z < equation.length; z++)
+{
+  if(equation[z] == "*")
+  {
+    auxValue = Number(equation[z - 1]); 
+    auxValue2 = Number(equation[z + 1]); 
+    auxOperation = auxValue * auxValue2; 
+    //equation = equation.splice(z - 1, 3, auxOperation); 
+    console.log("Ya hice la operación"); 
+  }
+}
+*/
+console.log("Aqui estan las pruebas"); 
+console.log(equation[1]); 
+for(let z = 0; z < equation.length; z++)
+{
+  if(equation[z] == '*')
+  {
+    indexAux2 = z; 
+    auxEqu = equation.substring(indexAux, indexAux2); 
+    auxValue = Number(auxEqu);
+    console.log(auxValue); 
+      for(let w = z + 1 ; w <= equation.length; w++)
+      {
+        if(equation[w] == '*' || equation[w] == '/' || equation[w] == '+' || equation[w] == '-'|| equation[w] == '=')
+        {
+          indexAux = w; 
+          auxEqu = equation.substring(indexAux2 + 1, indexAux);
+          auxValue2 =  Number(auxEqu); 
+          console.log("segundo valor");
+          console.log(auxEqu); 
+          break; 
+        }
+      }
+      auxOperation = auxValue * auxValue2; 
+      console.log(auxOperation); 
+      newValue = auxOperation.toString();
+      newString = equation.substring(indexAux, equation.length); 
+      console.log(newString); 
+      equation = auxOperation + newString; 
+      console.log("resultado final")
+      console.log(equation); 
+      z = 0; 
+      indexAux = 0; 
+  }
+
+  if(equation[z] == '/')
+  {
+    indexAux2 = z; 
+    auxEqu = equation.substring(indexAux, indexAux2); 
+    auxValue = Number(auxEqu);
+    console.log(auxValue); 
+      for(let w = z + 1 ; w <= equation.length; w++)
+      {
+        if(equation[w] == '*' || equation[w] == '/' || equation[w] == '+' || equation[w] == '-'|| equation[w] == '=')
+        {
+          indexAux = w; 
+          auxEqu = equation.substring(indexAux2 + 1, indexAux);
+          auxValue2 =  Number(auxEqu); 
+          console.log("segundo valor");
+          console.log(auxEqu); 
+          break; 
+        }
+      }
+      auxOperation = auxValue / auxValue2; 
+      console.log(auxOperation); 
+      newValue = auxOperation.toString();
+      newString = equation.substring(indexAux, equation.length); 
+      console.log(newString); 
+      equation = auxOperation + newString; 
+      console.log("resultado final")
+      console.log(equation); 
+      z = 0; 
+      indexAux = 0; 
+  }
+
+  if(equation[z] == '+')
+  {
+    indexAux2 = z; 
+    auxEqu = equation.substring(indexAux, indexAux2); 
+    auxValue = Number(auxEqu);
+    console.log(auxValue); 
+      for(let w = z + 1 ; w <= equation.length; w++)
+      {
+        if(equation[w] == '*' || equation[w] == '/' || equation[w] == '+' || equation[w] == '-'|| equation[w] == '=')
+        {
+          indexAux = w; 
+          auxEqu = equation.substring(indexAux2 + 1, indexAux);
+          auxValue2 =  Number(auxEqu); 
+          console.log("segundo valor");
+          console.log(auxEqu); 
+          break; 
+        }
+      }
+      auxOperation = auxValue + auxValue2; 
+      console.log(auxOperation); 
+      newValue = auxOperation.toString();
+      newString = equation.substring(indexAux, equation.length); 
+      console.log(newString); 
+      equation = auxOperation + newString; 
+      console.log("resultado final")
+      console.log(equation); 
+      z = 0; 
+      indexAux = 0; 
+  }
+
+  if(equation[z] == '-')
+  {
+    indexAux2 = z; 
+    auxEqu = equation.substring(indexAux, indexAux2); 
+    auxValue = Number(auxEqu);
+    console.log(auxValue); 
+      for(let w = z + 1 ; w <= equation.length; w++)
+      {
+        if(equation[w] == '*' || equation[w] == '/' || equation[w] == '+' || equation[w] == '-'|| equation[w] == '=')
+        {
+          indexAux = w; 
+          auxEqu = equation.substring(indexAux2 + 1, indexAux);
+          auxValue2 =  Number(auxEqu); 
+          console.log("segundo valor");
+          console.log(auxEqu); 
+          break; 
+        }
+      }
+      auxOperation = auxValue - auxValue2; 
+      console.log(auxOperation); 
+      newValue = auxOperation.toString();
+      newString = equation.substring(indexAux, equation.length); 
+      console.log(newString); 
+      equation = auxOperation + newString; 
+      console.log("resultado final")
+      console.log(equation); 
+      z = 0; 
+      indexAux = 0; 
+  }
+}
+
+equation = equation.substring(0,(equation.length - 1)); 
+// despliega resultado 
+console.log(equation);
+console.log("Esta es una prueba"); 
+document.getElementById("resultValue").value = Number(equation); 
+
+//despliega ecuación con resultado
+
+
+document.getElementById("logInformation").value = equationToPrint + equation; 
+
+
+}
+
+
+document.getElementById("resBt").addEventListener("click", reset);
+
+function reset(){
+  x = 0; 
+  equation = ""; 
+  console.log("theres nothing here");
+  document.getElementById("logInformation").value = "";
+   document.getElementById("resultValue").value = ""; 
+   document.getElementById("inputN").value = "";
+ 
+}
+
+
+
+//////////////////////////////HTML //////////////////////////////////////////////////
+
+<!DOCTYPE html>
+<html>
+  <head>
+     <title>The amazing calculator</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+     <div class="calculatorContainer">
+            <div class="calculatorTitle">
+                THE AMAZING CALCULATOR
+            </div>
+            <div class="display">
+                <input class="inputNumber" type="text" id = "inputN"/>
+            </div>
+            <div class="operators">
+                <span class="leftContainer">
+                    <span class="resetButton" id="resBt">
+                        RESET
+                    </span>
+                    <span class="equalButton" id ="equalSign">
+                        =
+                    </span>
+                </span>
+                <span class="rightContainer">
+                    <span class="upperOperators">
+                        <span id="addButton">
+                            +
+                        </span>
+                        <span id="substractButton">
+                            -
+                        </span>
+                    </span>
+                    <span class="lowerOperators">
+                        <span id="multiplicationButton">
+                            *
+                        </span>
+                        <span id="divisionButton">
+                            /
+                        </span>         
+                    </span>
+                </span>
+            </div>
+            <div class="operationLog">
+                <div class="results">
+                    <label class="labelClass">
+                        RESULT = 
+                    </label>
+                    <input id="resultValue" type="text" disabled/>
+                </div>
+                <div class="logDisplay">
+                    <textarea id="logInformation" disabled></textarea>
+                </div>
+            </div>
+        </div>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+//////////////////////////CSS///////////////////////////////////////////
+* {
+    box-sizing: border-box;
+}
+
+body{
+     font-size:1.5em;
+     font-family: sans-serif;
+     color: white;
+}
+
+.calculatorContainer{
+    border: 1px solid white;
+    background-color: #605E5E;
+    border-radius: 8px;
+    width : 380px;
+    margin : 0 auto;
+}
+
+.calculatorTitle{
+    color: white;
+    margin: 5px;
+    text-align: center;
+}
+
+.inputNumber{
+    height: 30px;
+    width: 100%;
+    text-align: right;
+    border-radius: 8px;
+    background-color: #E8E6E6;
+    font-size: 1em;
+    padding: 0 5px;
+}
+
+.operators{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.leftContainer{
+    display: flex;
+    flex-direction: column;
+}
+.rightContainer{
+    display: flex;
+    flex-direction: column;
+}
+.upperOperators, .lowerOperators{
+    display: flex;
+    flex-direction: row;
+}
+.upperOperators > span, .lowerOperators > span{
+    width: 50px;
+}
+
+.resetButton, .equalButton, #addButton, #substractButton, #multiplicationButton, #divisionButton{
+    padding: 10px;
+    border: 1px solid white;
+    text-align: center;
+    height: 50px;
+    border-radius: 8px;
+    margin: 5px;
+}
+
+.resetButton:hover, .equalButton:hover, #addButton:hover, #substractButton:hover, #multiplicationButton:hover, #divisionButton:hover{
+    background: #A1E1E4;
+    cursor: pointer;
+    color: #605E5E;
+    border-color: #605E5E;
+}
+
+.results{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 20px;
+}
+
+.display{
+    padding: 5px;
+}
+
+.labelClass{
+    color: white;
+}
+
+#logInformation{
+    padding: 0 10px;
+    background-color: #E8E6E6;
+    font-size: 0.5em;
+    border-radius: 8px;
+    border: 1px solid white;
+    width: 97%;
+    margin: 10px auto;
+    display: block;
+    height: 200px;
+ }
